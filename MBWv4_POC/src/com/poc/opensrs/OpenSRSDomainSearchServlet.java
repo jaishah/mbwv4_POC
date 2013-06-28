@@ -184,9 +184,12 @@ private String processXmlSearch(OpenSRSDomainSearchJSPBean oBean,String name){
 				sbuff.append(key.getDomainName()+"</td>");
 				if(key.getStatus().equalsIgnoreCase("available")){
 				sbuff.append("<td align=\"right\" width=\"122\">" +
-						"<span >Available</span></td><td align=\"right\">" +
+						"<span >Available</span></td></tr>");}
+				/*
+				 * <td align=\"right\">" +
 						"<a  href=\"#\" id='' onclick=\"fnregister('");
-				sbuff.append(key.getDomainName()+"')\">Register</a></td></tr>");}
+				sbuff.append(key.getDomainName()+"')\">Register</a></td>
+				 */
 				else if(key.getStatus().equalsIgnoreCase("taken"))
 					sbuff.append("<td align=\"right\" width=\"122\">" +
 							"<span >Not Available</span></td><td align=\"right\">");
@@ -206,9 +209,12 @@ private String processXmlSearch(OpenSRSDomainSearchJSPBean oBean,String name){
 			sbuff.append(key.getDomainName()+"</td>");
 			if(key.getStatus().equalsIgnoreCase("available")){
 				sbuff.append("<td align=\"right\" width=\"122\">" +
-						"<span >Available</span></td><td align=\"right\">" +
+						"<span >Available</span></td></tr>");}
+			/*
+			 * <td align=\"right\">" +
 						"<a  href=\"#\" id='' onclick=\"fnregister('");
-				sbuff.append(key.getDomainName()+"')\">Register</a></td></tr>");}
+				sbuff.append(key.getDomainName()+"')\">Register</a></td>
+			 */
 				else if(key.getStatus().equalsIgnoreCase("taken"))
 					sbuff.append("<td align=\"right\" width=\"122\">" +
 							"<span>Not Available</span></td><td align=\"right\">");
