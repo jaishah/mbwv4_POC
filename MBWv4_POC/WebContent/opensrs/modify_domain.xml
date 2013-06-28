@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone='yes'?>
+<!DOCTYPE OPS_envelope SYSTEM 'ops.dtd'>
+<OPS_envelope>
+<header>
+<version>0.9</version>
+</header>
+<body>
+<data_block>
+<dt_assoc>
+<item key="protocol">XCP</item>
+<item key="action">modify</item>
+<item key="object">domain</item>
+<item key="attributes">
+<dt_assoc>
+<item key="domain">{$term$}</item>
+<item key="report_email"/>
+<item key="state">{$state$}</item>
+<item key="data">whois_privacy_state</item>
+</dt_assoc>
+</item>
+</dt_assoc>
+</data_block>
+</body>
+</OPS_envelope>

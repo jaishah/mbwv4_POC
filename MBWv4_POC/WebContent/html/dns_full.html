@@ -1,0 +1,342 @@
+<html>
+<head>
+	<title> DNS </title>
+	<style>
+		.tdipclass {
+			padding-left:20px;
+		}
+		.borderright {
+			border-right: 1px dotted  #000
+		}
+		.closeimg {
+			padding-left:5px;
+			background:url(closed.png) no-repeat top left;
+			display: inline-block;
+			height: 16px;
+			width: 16px;
+		}
+		.dmntable {
+			border-bottom:1px solid;
+		}
+		.txtrecord , .aaarecord, .fwdrecord, .arecord, .mxrecord{
+			display:none;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="dns.js"></script>
+</head>
+<body>
+	<div style="height:40px;background-color:#282C36"> 
+		<table width="100%" style="color:#FFF">
+			<tr>
+				<td> DNS </td>
+				<td style="float:right"> Help </td>
+			</tr>
+		</table>
+	</div>
+	<br />
+	<br />
+	<br />
+	<hr>
+	<table  border="0" style="padding:10px 0;" class="dmntable">
+		<tr>
+			<td class="borderright"> 
+				<table width="360" height="110" border="0" cellpadding="10" >
+					<tr>
+						<td> 
+							<b> Domain : </b>  <br />
+							bizonlinehub.com
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+			   <table  width="930" cellpadding="10" cellspacing="10" style="margin-left:30px;">
+				   <tr class="txtrecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"></span> TXT Record
+						</td>
+						<td class="tdipclass">
+							<b> Text: </b>  <br >
+							<input type="text" />
+						</td>
+				    </tr>
+				    <tr class="fwdrecord">
+						 <td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"></span> Forward 
+						 </td>
+						<td class="tdipclass">
+							<b> Destination URL: </b>  <br >
+							<input type="text" />
+						</td>
+				    </tr>
+				    <tr class="aaarecord">
+						 <td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span> AAAA Record
+						 </td>
+						<td class="tdipclass">
+							<b> IP Address: </b>  <br >
+						
+							<input type="text" />
+						</td>
+				    </tr>
+				    <tr class="mxrecord">
+						 <td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span> MX Record
+						 </td>
+						<td class="tdipclass">
+							<table>
+								<tr>
+									<td> 
+										<b> IP Address: </b>  <br >
+											<input type="text" />
+									</td>
+									<td>
+										<b> Priority: </b>  <br >
+										<input type="text" />
+									</td>
+								</tr>
+							</table>
+						</td>
+				    </tr>
+				    <tr class="arecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span> A Record
+						</td>
+						<td class="tdipclass">
+							<b> IP Address: </b>  <br >
+							<input type="text" />
+						</td>
+				   </tr>
+				   <tr>
+						<td colspan="2"  style="padding-top:20px;border-top: 1px dotted  #000;">
+							<select class="recordselect">
+								 <option value="Add New Record">Add New Record </option>
+								  <option value="AAAA Record">AAAA Record</option>
+								  <option value="MX Record">MX Record </option>
+								  <option value="TXT Record">TXT Record </option>
+								  <option value="Forward">Forward</option>
+								  <option value="Masked Forward">Masked Forward</option>
+							</select>
+						</td>
+				   </tr>
+			   </table>
+		  </td>
+		</tr>
+	</table>
+	
+	
+	<table  border="0" style="padding:10px 0;" class="dmntable">
+		<tr>
+			<td class="borderright"> 
+				<table width="360" height="110" border="0" cellpadding="10" >
+					<tr>
+						<td> 
+							<b> Domain : </b>  <br />
+							<span class="closeimg" onclick="fnTableClose(this)"></span>*.bizonlinehub.com
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+			   <table  width="930" cellpadding="10" cellspacing="0" style="margin-left:30px;">
+				   <tr class="txtrecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span> TXT Record
+						</td>
+						<td class="tdipclass">
+							<b> Text: </b>  <br >
+							<input type="text" />
+						</td>
+					</tr>
+				    <tr class="fwdrecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span>Forward
+						</td>
+						<td class="tdipclass">
+							<b> Destination URL: </b>  <br >
+							<input type="text" />
+						</td>
+				    </tr>
+				    <tr class="aaarecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span>AAAA Record
+						</td>
+						<td class="tdipclass">
+							<b> IP Address: </b>  <br >
+							<input type="text" />
+						</td>
+					</tr>
+					<tr class="mxrecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span> MX Record
+						</td>
+						<td class="tdipclass">
+							<table>
+								<tr>
+									<td> 
+										<b> IP Address: </b>  <br >
+											<input type="text" />
+									</td>
+									<td>
+										<b> Priority: </b>  <br >
+										<input type="text" />
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				    <tr  class="arecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"></span> A Record
+						</td>
+						<td class="tdipclass">
+							<b> IP Address: </b>  <br >
+							<input type="text" />
+						</td>
+				   </tr>
+				   <tr>
+						<td colspan="2"  style="padding-top:20px;border-top: 1px dotted  #000;">
+							<select class="recordselect">
+								 <option value="Add New Record">Add New Record </option>
+								  <option value="AAAA Record">AAAA Record</option>
+								  <option value="MX Record">MX Record </option>
+								  <option value="TXT Record">TXT Record </option>
+								  <option value="Forward">Forward</option>
+								  <option value="Masked Forward">Masked Forward</option>
+							</select>
+						</td>
+				   </tr>
+			   </table>
+		  </td>
+		</tr>
+	</table>
+
+	
+	<table  border="0"  style="padding:10px 0;" class="dmntable">
+		<tr>
+			<td class="borderright"> 
+				<table width="360" height="110" border="0" cellpadding="10" >
+					<tr>
+						<td> 
+							<b> Domain : </b>  <br />
+							<span class="closeimg" onclick="fnTableClose(this)"></span> www.bizonlinehub.com
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+			   <table  width="930" cellpadding="10" cellspacing="0" style="margin-left:30px;">
+				   <tr class="txtrecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span> TXT Record
+						</td>
+						<td class="tdipclass">
+							<b> Text: </b>  <br >
+							<input type="text" />
+						</td>
+					</tr>
+				    <tr class="fwdrecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span> Forward
+						</td>
+						<td class="tdipclass">
+							<b> Destination URL: </b>  <br >
+							<input type="text" />
+						</td>
+					</tr>
+				    <tr class="aaarecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span>AAAA Record
+						</td>
+						<td class="tdipclass">
+							<b> IP Address: </b>  <br >
+							<input type="text" />
+						</td>
+					</tr>
+					<tr class="mxrecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span> MX Record
+						</td>
+						<td class="tdipclass">
+							<table>
+								<tr>
+									<td> 
+										<b> IP Address: </b>  <br >
+											<input type="text" />
+									</td>
+									<td>
+										<b> Priority: </b>  <br >
+										<input type="text" />
+									</td>
+								</tr>
+							</table>
+						</td>
+				   </tr>
+				    <tr class="arecord">
+						<td class="borderright"> 
+							<b> Record: </b>  <br >
+							<span class="closeimg"> </span> A Record
+						</td>
+						<td class="tdipclass">
+							<b> IP Address: </b>  <br >
+							<input type="text" />
+						</td>
+				   </tr>
+				   <tr>
+						<td colspan="2"  style="padding-top:20px;border-top: 1px dotted  #000;">
+							<select class="recordselect">
+								 <option value="Add New Record">Add New Record </option>
+								  <option value="AAAA Record">AAAA Record</option>
+								  <option value="MX Record">MX Record </option>
+								  <option value="TXT Record">TXT Record </option>
+								  <option value="Forward">Forward</option>
+								  <option value="Masked Forward">Masked Forward</option>
+							</select>
+						</td>
+				   </tr>
+			   </table>
+		  </td>
+		</tr>
+	</table>
+	
+	<table  border="0" style="padding:20px 0;">
+		<tr>
+			<td> 
+				<input type="button" value="ADD SUBDOMAIN" />
+			</td>
+			<td> 
+				<input type="text" />
+			</td>
+			<td> 
+				.bizonlinehub.com
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<table  border="0" style="padding:20px 0;float:right">
+		<tr>
+			<td> 
+				<input type="button" value="CLEAR" />
+			</td>
+			<td> 
+				<input type="button" value="SAVE DNS SEETING" />
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

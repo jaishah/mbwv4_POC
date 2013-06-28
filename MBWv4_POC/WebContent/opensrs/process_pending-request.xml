@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no' ?>
+<!DOCTYPE OPS_envelope SYSTEM 'ops.dtd'>
+	<OPS_envelope>
+		<header>
+			<version>0.9</version>
+			<msg_id>2.21765911726198</msg_id>
+			<msg_type>standard</msg_type>
+		</header>
+		<body>
+			<data_block>
+				<dt_assoc>
+					<item key="protocol">XCP</item>
+					<item key="action">process_pending</item>
+					<item key="object">domain</item>
+					<item key="attributes">
+						<dt_assoc>
+							<item key="owner_address">myemail@example.com</item>
+							<item key="order_id">2559571</item>
+						</dt_assoc>
+					</item>
+				</dt_assoc>
+			</data_block>
+		</body>
+</OPS_envelope>

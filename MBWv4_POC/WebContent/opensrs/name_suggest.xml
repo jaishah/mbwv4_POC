@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no' ?>
+<!DOCTYPE OPS_envelope SYSTEM 'ops.dtd'>
+<OPS_envelope>   
+	<header>       
+		<version>0.9</version>   
+	</header>
+	<body>
+		<data_block>
+			<dt_assoc>
+				<item key='attributes'>
+					<dt_assoc>
+						<item key='services'>
+							<dt_array>
+								<item key='0'>lookup</item>
+								<item key='1'>suggestion</item>
+							</dt_array>
+						</item>
+						<item key='searchstring'>{$term$}</item>
+						<item key='languages'>
+							<dt_array>
+								<item key='0'>en</item>
+							</dt_array>
+						</item>
+						<item key='tlds'>
+							<dt_array>
+								<item key='0'>.co.uk</item>
+								<item key='1'>.com</item>
+								<item key='2'>.net</item>
+								<item key='3'>.org</item>
+								<item key='4'>.biz</item>
+							</dt_array>
+						</item>
+						<item key='pre-reg'>0</item>
+					</dt_assoc>
+				</item>
+				<item key='object'>DOMAIN</item>
+				<item key='action'>NAME_SUGGEST</item>
+				<item key='protocol'>XCP</item>
+			</dt_assoc>
+		</data_block>
+	</body>
+</OPS_envelope>

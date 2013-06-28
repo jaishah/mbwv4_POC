@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no' ?>
+<!DOCTYPE OPS_envelope SYSTEM 'ops.dtd'>
+<OPS_envelope>
+	<header>
+		<version>0.9</version>
+	</header>
+	<body>
+		<data_block>
+			<dt_assoc>
+				<item key="protocol">XCP</item>
+				<item key="action">SW_REGISTER</item>
+				<item key="object">DOMAIN</item>
+				<item key="registrant_ip">10.20.10.7</item>
+				<item key="attributes">
+					<dt_assoc>
+						<item key="auto_renew"/>
+						<item key="link_domains">0</item>
+						<item key="reg_domain"/>
+						<item key="f_lock_domain">1</item>
+						<item key="f_whois_privacy">1</item>
+						<item key="f_parkp">Y</item>
+						<item key="domain">shah.co.uk</item>
+						<item key="affiliate_id"/>
+						<item key="period">1</item>
+						<item key="reg_type">new</item>
+						<item key="comments">Blahdeblahdeblah</item>
+						<item key="reg_username">bcsg</item>
+						<item key="custom_tech_contact">0</item>
+						<item key="contact_set">
+							<dt_assoc>
+								<item key="owner">
+									<dt_assoc>
+										<item key="first_name">Phil</item>
+										<item key="last_name">Bircumshaw</item>
+										<item key="org_name">BCSG</item>
+										<item key="address1">130 Old Street</item>
+										<item key="city">London</item>
+										<item key="state">London</item>
+										<item key="country">GB</item>
+										<item key="postal_code">EC1V 9BD</item>
+										<item key="phone">+1.41655511221234</item>
+										<item key="email">phil.bircumshaw@bcsg.com</item>
+									</dt_assoc>								
+								</item>
+								<item key="billing">
+									<dt_assoc>
+										<item key="first_name">Phil</item>
+										<item key="last_name">Bircumshaw</item>
+										<item key="phone">+1.41655511221234</item>
+										<item key="fax">+1.41655511221235</item>
+										<item key="email">phil.bircumshaw@bcsg.com</item>
+										<item key="org_name">BCSG Inc</item>
+										<item key="address1">130 Old Street</item>
+										<item key="address2"></item>
+										<item key="address3"></item>
+										<item key="city">London</item>
+										<item key="state">London</item>
+										<item key="country">GB</item>
+										<item key="postal_code">EC1V 9BD</item>
+									</dt_assoc>
+								</item>						
+							</dt_assoc>
+						</item>	
+						<item key="nameserver_list">
+							<dt_array>
+								<item key="0">
+									<dt_assoc>
+										<item key="sortorder">1</item>
+										<item key="name">ns1.systemdns.com</item>
+									</dt_assoc>
+								</item>
+								<item key="1">
+									<dt_assoc>
+										<item key="sortorder">2</item>
+										<item key="name">ns2.systemdns.com</item>
+									</dt_assoc>
+								</item>
+							</dt_array>
+						</item>
+						<item key="reg_password">Welcome1</item>
+						<item key="encoding_type"/>
+						<item key="custom_nameservers">1</item>
+					</dt_assoc>
+				</item>
+			</dt_assoc>
+		</data_block>
+	</body>
+</OPS_envelope>

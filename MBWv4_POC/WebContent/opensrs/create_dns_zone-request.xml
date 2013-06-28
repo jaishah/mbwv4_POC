@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE OPS_envelope SYSTEM 'ops.dtd'>
+	<OPS_envelope>
+		<header>
+			<version>0.9</version>
+		</header>
+		<body>
+			<data_block>
+				<dt_assoc>
+					<item key="protocol">XCP</item>
+					<item key="action">CREATE_DNS_ZONE</item>
+					<item key="object">DOMAIN</item>
+					<item key="attributes">
+					<dt_assoc>
+						<item key="domain">shah.co.uk</item>
+						<item key="records">
+							<dt_assoc>
+								<item key="A">
+									<dt_array>
+										<item key="0">
+											<dt_assoc>
+												<item key="subdomain"></item>
+												<item key="ip_address">123.123.123.2</item>
+											</dt_assoc>
+										</item>
+										<item key="1">
+											<dt_assoc>
+												<item key="subdomain">*</item>
+												<item key="ip_address">123.123.123.3</item>
+											</dt_assoc>
+										</item>
+										<item key="2">
+											<dt_assoc>
+												<item key="subdomain">www</item>
+												<item key="ip_address">123.123.123.4</item>
+											</dt_assoc>
+										</item>
+									</dt_array>
+								</item>
+								<item key="CNAME">
+									<dt_array>
+										<item key="0">
+											<dt_assoc>
+												<item key="subdomain">portal</item>
+												<item key="hostname">www.shah.co.uk</item>
+											</dt_assoc>
+										</item>
+									</dt_array>
+								</item>
+								<item key="MX">
+									<dt_array>
+										<item key="0">
+											<dt_assoc>
+												<item key="subdomain"></item>
+												<item key="hostname">mx.shah.co.uk.cust.test.hostedemail.com</item>
+												<item key="priority">10</item>
+											</dt_assoc>
+										</item>
+									</dt_array>
+								</item>
+								<item key="TXT">
+									<dt_array>
+										<item key="0">
+											<dt_assoc>
+												<item key="subdomain">mail</item>
+												<item key="text">v=spf1exists:shah.co.uk -all</item>
+											</dt_assoc>
+										</item>
+									</dt_array>
+								</item>
+								<item key="AAAA">
+									<dt_array>
+										<item key="0">
+											<dt_assoc>
+												<item key="subdomain">itportal</item>
+												<item key="ipv6_address">2001:00ab:0000:00a1:0001:000b:00cc:00de</item>
+											</dt_assoc>
+										</item>
+									</dt_array>
+								</item>
+								<item key="SRV">
+									<dt_array>
+										<item key="0">
+											<dt_assoc>
+												<item key="subdomain">itcontrol</item>
+												<item key="hostname">control.shah.co.uk</item>
+												<item key="port">443</item>	
+												<item key="priority">10</item>
+												<item key="weight">1</item>
+											</dt_assoc>
+										</item>
+									</dt_array>
+								</item>
+							</dt_assoc>
+						</item>
+					</dt_assoc>
+				</item>
+			</dt_assoc>
+		</data_block>
+	</body>
+</OPS_envelope>
