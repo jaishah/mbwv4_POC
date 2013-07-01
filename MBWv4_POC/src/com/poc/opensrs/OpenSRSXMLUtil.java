@@ -443,6 +443,12 @@ public class OpenSRSXMLUtil {
 					processAAARecord(el, data);
 				}
 			}
+			else if (keyName.equalsIgnoreCase("CNAME")) {
+				if (el.getAttribute("key") != null
+						&& el.getAttribute("key").equalsIgnoreCase("CNAME")) {
+					processCNameRecord(el, data);
+				}
+			}
 	          /*  if (el.getAttribute("key")!=null && el.getAttribute("key").equalsIgnoreCase("CNAME")) {
 	                processCNameRecord(el, data);
 	            } 
@@ -510,6 +516,28 @@ public class OpenSRSXMLUtil {
 	}
 
 	private static void processAAARecord(Element aRecord, String content) {
+		String propPrefix = "PROD";
+		String envStage = "stage";// configManager.getProperty(SaaSConfigProperties.PROP_PROV_ENV);
+		if (envStage.equalsIgnoreCase("stage"))
+			propPrefix = envStage.toUpperCase();
+		String pName = "";
+		NodeList dtArray = aRecord.getElementsByTagName("dt_array");// .item(0);
+		for (int i = 0; i < dtArray.getLength(); i++) {
+			Element person = (Element) dtArray.item(i);
+			NodeList items = person.getElementsByTagName("item");
+			for (int j = 0; j < items.getLength(); j++) {
+				Element item = (Element) items.item(j);
+				if (item != null)
+					pName = item.getAttribute("key");
+				if (pName != null && pName.equalsIgnoreCase("ipv6_address")) {
+					item.setTextContent(content);
+				}
+			}
+		}
+
+	}
+	
+	private static void processCNameRecord(Element aRecord, String content) {
 		String propPrefix = "PROD";
 		String envStage = "stage";// configManager.getProperty(SaaSConfigProperties.PROP_PROV_ENV);
 		if (envStage.equalsIgnoreCase("stage"))

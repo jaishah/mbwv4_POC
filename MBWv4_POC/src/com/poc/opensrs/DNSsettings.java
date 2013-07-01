@@ -214,6 +214,13 @@ public class DNSsettings extends HttpServlet {
 						"P"+request.getParameter("mx_prity"), "MX", filePath);
 				d.setMx_priority(request.getParameter("mx_prity"));
 			}
+			if (request.getParameter("c_host") != null
+					&& !(request.getParameter("c_host").trim()
+							.equalsIgnoreCase(""))) {
+				xml = OpenSRSXMLUtil.processSaveDNS(xml,
+						request.getParameter("c_host"), "CNAME", filePath);
+				d.setHostname(request.getParameter("c_host"));
+			}
 			log.write(getLogLevel(), xml);
 
 		} catch (Exception e1) {

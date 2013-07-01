@@ -24,7 +24,7 @@
 		.dmntable {
 			border-bottom:1px solid;
 		}
-		.txtrecord , .aaarecord, .fwdrecord, .arecord, .mxrecord{
+		.txtrecord , .aaarecord, .crecord, .arecord, .mxrecord{
 			display:table-row;
 		}
 	</style>
@@ -76,14 +76,14 @@ res = (String)request.getAttribute("success");} %>
 							<input type="text" id="txt" name="txt" value="${domain.text}"/>
 						</td>
 				    </tr>
-				    <tr class="fwdrecord">
+				    <tr class="crecord">
 						 <td class="borderright"> 
 							<b> Record: </b>  <br >
-							<span class="closeimg"></span> Forward 
+							<span class="closeimg"></span> CNAME Record 
 						 </td>
 						<td class="tdipclass">
-							<b> Destination URL: </b>  <br >
-							<input type="text" />
+							<b> Hostname: </b>  <br >
+							<input type="text" id="c_host" name="c_host" value="${domain.hostname}" />
 						</td>
 				    </tr>
 				    <tr class="aaarecord">
@@ -134,8 +134,8 @@ res = (String)request.getAttribute("success");} %>
 								  <option value="AAAA Record">AAAA Record</option>
 								  <option value="MX Record">MX Record </option>
 								  <option value="TXT Record">TXT Record </option>
-								  <option value="Forward">Forward</option>
-								  <option value="Masked Forward">Masked Forward</option>
+								  <option value="CNAME Record">CNAME Record</option>
+								  <option value="A Record">A Record</option>
 							</select>
 						</td>
 				   </tr>
