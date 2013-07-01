@@ -18,9 +18,9 @@ $(document).ready(function() {
 		var selectVal = $(this).find("option:selected").text();
 		if("TXT Record" == $.trim(selectVal)) {
 			$(this).closest('table').find('.txtrecord').css('display', 'table-row');
-		} else if("Forward" == $.trim(selectVal)) {
-			$(this).closest('table').find('.fwdrecord').css('display', 'table-row');
-		} else if("Masked Forward" == $.trim(selectVal)) {
+		} else if("CNAME Record" == $.trim(selectVal)) {
+			$(this).closest('table').find('.crecord').css('display', 'table-row');
+		} else if("A Record" == $.trim(selectVal)) {
 			$(this).closest('table').find('.arecord').css('display', 'table-row');
 		}
 		else if("MX Record" == $.trim(selectVal)) {
