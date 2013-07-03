@@ -13,6 +13,9 @@
 			.smallRow {
 				padding-bottom:10px;
 			}
+			.pass{
+			input-type:password;
+			}
 		</style>
 		<title>OpenSRS Mail Test</title>
 		<%if (jspBean.getStep().equals("SSO")) {%>
@@ -51,7 +54,7 @@
 			        					<%if (jspBean.getStep().equals("finalise")) {%> 
 										<td class="normal">Name:</td><td class="normal" style="padding-left:10px; padding-right:10px;"><%= jspBean.renderHTMLInput("name", "", 20, 255) %></td>
 										</tr><tr>
-										<td class="normal">Password:</td><td class="normal" style="padding-left:10px; padding-right:10px;"><%= jspBean.renderHTMLInput("password", "", 20, 255) %></td>
+										<td class="normal">Password:</td><td class="normal" style="padding-left:10px; padding-right:10px;"><input type="password" name="password" size="20" maxlength="255"/><%-- <%= jspBean.renderHTMLInput("password", "pass", 20, 255) %> --%></td>
 										</tr>
 										<tr>
 										<td class="normal">Aliases:</td><td class="normal" style="padding-left:10px; padding-right:10px;"><%= jspBean.renderHTMLInput("aliases", "", 20, 255) %>------Please enter comma separated emailIds</td>

@@ -94,7 +94,7 @@ res = (String)request.getAttribute("success");} %>
 						<td class="tdipclass">
 							<b> IP Address: </b>  <br >
 						
-							<input type="text" id="ipv6" name="ipv6" value="${domain.ipv6}"/>
+							<input type="text" id="ipv6" name="ipv6" value="${domain.ipv6}" />
 						</td>
 				    </tr>
 				    <tr class="mxrecord">
@@ -117,7 +117,7 @@ res = (String)request.getAttribute("success");} %>
 							</table>
 						</td>
 				    </tr>
-				    <tr class="arecord">
+				    <!-- <tr class="arecord">
 						<td class="borderright"> 
 							<b> Record: </b>  <br >
 							<span class="closeimg"> </span> A Record
@@ -126,7 +126,7 @@ res = (String)request.getAttribute("success");} %>
 							<b> IP Address: </b>  <br >
 							<input type="text" id="a_ip" name="a_ip"  value=""/>
 						</td>
-				   </tr>
+				   </tr> -->
 				   <tr>
 						<td colspan="2"  style="padding-top:20px;border-top: 1px dotted  #000;">
 							<select class="recordselect">
@@ -135,7 +135,7 @@ res = (String)request.getAttribute("success");} %>
 								  <option value="MX Record">MX Record </option>
 								  <option value="TXT Record">TXT Record </option>
 								  <option value="CNAME Record">CNAME Record</option>
-								  <option value="A Record">A Record</option>
+								  <!-- <option value="A Record">A Record</option> -->
 							</select>
 						</td>
 				   </tr>
