@@ -14,7 +14,10 @@
 				padding-bottom:10px;
 			}
 		</style>
+		
 		<title>Session Start Page</title>
+		<script type="text/javascript" src="javascript/web_poc.js"></script>
+	<script type="text/javascript" src="javascript/jquery-1.7.1.min.js"></script>
 	</head>
 	<body>
 		
@@ -58,6 +61,10 @@
 				</td>
 			</tr>
 		</table>
+		</form>
+		<form Name="register" action="OpenSRSDomainSearch" method="post">
+		<input type="hidden" name="event" value="register"/>
+		<input type="hidden" name="domainName" id="domainName" value=""/>
 		</form>
 <p><a href="menu.jsp">Back</a></p>
 	</body>

@@ -23,40 +23,41 @@
 						<item key="affiliate_id"/>
 						<item key="period">1</item>
 						<item key="reg_type">new</item>
-						<item key="comments">Blahdeblahdeblah</item>
-						<item key="reg_username">bcsg</item>
+						<item key="comments"></item>
+						<item key="reg_username">{$user$}</item>
 						<item key="custom_tech_contact">0</item>
 						<item key="contact_set">
 							<dt_assoc>
 								<item key="owner">
 									<dt_assoc>
-										<item key="first_name">Phil</item>
-										<item key="last_name">Bircumshaw</item>
-										<item key="org_name">BCSG</item>
-										<item key="address1">130 Old Street</item>
-										<item key="city">London</item>
-										<item key="state">London</item>
-										<item key="country">GB</item>
-										<item key="postal_code">EC1V 9BD</item>
-										<item key="phone">+044.2077777777</item>
-										<item key="email">phil.bircumshaw@bcsg.com</item>
+										<item key="first_name">Piers</item>
+										<item key="last_name">Chead</item>
+										<item key="org_name">Business Centric Service Group Ltd</item>
+										<item key="address1">1000 N. West Street, Suite 1200</item>
+										<item key="address2">New Castle County</item>
+										<item key="city">Wilmington</item>
+										<item key="state">Delaware</item>
+										<item key="country">US</item>
+										<item key="postal_code">19801</item>
+										<item key="phone">+1.4165551122x1</item>
+										<item key="email">finance@bcsg.com</item>
 									</dt_assoc>								
 								</item>
 								<item key="billing">
 									<dt_assoc>
-										<item key="first_name">Phil</item>
-										<item key="last_name">Bircumshaw</item>
-										<item key="phone">+044.2077777779</item>
-										<item key="fax">+044.2077777778</item>
-										<item key="email">phil.bircumshaw@bcsg.com</item>
-										<item key="org_name">BCSG Inc</item>
-										<item key="address1">130 Old Street</item>
-										<item key="address2"></item>
+										<item key="first_name">Piers</item>
+										<item key="last_name">Chead</item>
+										<item key="phone">+1.4165551122x1</item>
+										<item key="fax"></item>
+										<item key="email">finance@bcsg.com</item>
+										<item key="org_name">Business Centric Service Group Inc.</item>
+										<item key="address1">1000 N. West Street, Suite 1200</item>
+										<item key="address2">New Castle County</item>
 										<item key="address3"></item>
-										<item key="city">London</item>
-										<item key="state">London</item>
-										<item key="country">GB</item>
-										<item key="postal_code">EC1V 9BD</item>
+										<item key="city">Wilmington</item>
+										<item key="state">Delaware</item>
+										<item key="country">US</item>
+										<item key="postal_code">19801</item>
 									</dt_assoc>
 								</item>						
 							</dt_assoc>
@@ -77,7 +78,8 @@
 								</item>
 							</dt_array>
 						</item>
-						<item key="reg_password">Welcome1</item>
+						<!--{$nexus_information$}-->
+						<item key="reg_password">{$pwd$}</item>
 						<item key="encoding_type"/>
 						<item key="custom_nameservers">1</item>
 					</dt_assoc>

@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.CharArrayReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -71,7 +71,11 @@ public class OpenSRSDomainSearchServlet extends JSPServlet {
     protected String post(HttpServletRequest request, HttpServletResponse response,
 			    HttpSession sess2, HashMap urlParams, JSPBean jspBean) throws Exception
     {
-		
+    	response.setContentType("text/html");
+		response.setHeader("Cache-Control", 
+			"no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0, private,  must-revalidate"); // HTTP 1.1.
+		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+		response.setDateHeader("Expires", -1); // Proxies.
         Configuration cfg=Globals.cfg;                
         Log log=Globals.log;                
         filePath = getServletContext().getRealPath("\\opensrs\\");
@@ -81,8 +85,34 @@ public class OpenSRSDomainSearchServlet extends JSPServlet {
         
         String xml=null;
         String step=null;
-        
-        if (oBean.getStep().equals("search")) {
+        PrintWriter out = response.getWriter();
+        if (request.getParameter("event") != null
+				&& request.getParameter("event").equalsIgnoreCase("register")) {
+			if (request.getParameter("domainName") != null) {
+				String domainName = request.getParameter("domainName");
+				processXmlRegister(domainName);
+				if(is_success){
+					String ordId=orderId.trim();
+					processXmlCnfRegistration(ordId,domainName);
+				if(cnf_success){
+					xml=domainName+" created successfully.";
+					cnf_success=false;
+					step="search";
+					}
+				else if(cnf_success==false){
+					xml=domainName+" was not created.";
+					cnf_success=false;
+					step="search";
+				}
+				orderId = "";
+				is_success=false;
+				}
+			}
+			oBean.setXml(xml);
+	        oBean.setStep(step);
+			return null;
+		} 
+       if (oBean.getStep().equals("search")) {
             
             //send name_suggest xml        
           //  xml = readXMLFile("c:\\bep\\opensrs\\name_suggest.xml");            
@@ -184,12 +214,9 @@ private String processXmlSearch(OpenSRSDomainSearchJSPBean oBean,String name){
 				sbuff.append(key.getDomainName()+"</td>");
 				if(key.getStatus().equalsIgnoreCase("available")){
 				sbuff.append("<td align=\"right\" width=\"122\">" +
-						"<span >Available</span></td></tr>");}
-				/*
-				 * <td align=\"right\">" +
+						"<span >Available</span></td> <td align=\"right\">" +
 						"<a  href=\"#\" id='' onclick=\"fnregister('");
-				sbuff.append(key.getDomainName()+"')\">Register</a></td>
-				 */
+				sbuff.append(key.getDomainName()+"')\">Register</a></td></tr>");}
 				else if(key.getStatus().equalsIgnoreCase("taken"))
 					sbuff.append("<td align=\"right\" width=\"122\">" +
 							"<span >Not Available</span></td><td align=\"right\">");
@@ -209,12 +236,9 @@ private String processXmlSearch(OpenSRSDomainSearchJSPBean oBean,String name){
 			sbuff.append(key.getDomainName()+"</td>");
 			if(key.getStatus().equalsIgnoreCase("available")){
 				sbuff.append("<td align=\"right\" width=\"122\">" +
-						"<span >Available</span></td></tr>");}
-			/*
-			 * <td align=\"right\">" +
+						"<span >Available</span></td><td align=\"right\">" +
 						"<a  href=\"#\" id='' onclick=\"fnregister('");
-				sbuff.append(key.getDomainName()+"')\">Register</a></td>
-			 */
+				sbuff.append(key.getDomainName()+"')\">Register</a></td></tr>");}
 				else if(key.getStatus().equalsIgnoreCase("taken"))
 					sbuff.append("<td align=\"right\" width=\"122\">" +
 							"<span>Not Available</span></td><td align=\"right\">");
@@ -514,5 +538,89 @@ private String processXmlSearch(OpenSRSDomainSearchJSPBean oBean,String name){
         return xmlString;        
         
     }        
-        
+	private void processXmlRegister(String name){
+		 Log log=Globals.log;  
+		String user = Globals.cfg.getProperty("opensrs.reg.username");
+		String pwd= Globals.cfg.getProperty("opensrs.reg.password");
+		try{
+			String xml=OpenSRSXMLUtil.readXMLFile(filePath+"\\sw_register.xml");
+		xml=OpenSRSXMLUtil.replaceEx(xml, "{$term$}", name);
+		xml=OpenSRSXMLUtil.replaceEx(xml, "{$user$}", user);
+		xml=OpenSRSXMLUtil.replaceEx(xml, "{$pwd$}", pwd);
+		String resp=OpenSRSXMLUtil.callOSRS(xml);
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		try {
+			SAXParser parser = factory.newSAXParser();
+			InputSource is =new InputSource(new StringReader(resp));
+			is.setSystemId(filePath+"/opensrs");
+			parser.parse(is, new OpenSRSHandler());
+		} catch (ParserConfigurationException e) {
+			log.printStackTrace(e);
+		} catch (SAXException e) {
+			log.printStackTrace(e);
+		} catch (IOException e) {
+			log.printStackTrace(e);
+		}
+		}
+		catch(Exception e){
+			log.printStackTrace(e);
+		}
+		}
+	
+	private void processXmlCnfRegistration(String ordId,String domainName){
+		Log log=Globals.log;  
+		try{
+		String pending_xml=OpenSRSXMLUtil.readXMLFile(filePath+"\\process_pending.xml");
+		pending_xml=OpenSRSXMLUtil.replaceEx(pending_xml, "{$term$}", ordId);
+		String resp=OpenSRSXMLUtil.callOSRS(pending_xml);
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		try {
+			SAXParser parser = factory.newSAXParser();
+			InputSource is =new InputSource(new StringReader(resp));
+			is.setSystemId(filePath+"/opensrs");
+			parser.parse(is, new OpenSRSHandler());
+			if(cnf_success){
+				processCreateDNS(domainName);
+			}
+			
+		} catch (ParserConfigurationException e) {
+			log.printStackTrace(e);
+		} catch (SAXException e) {
+			log.printStackTrace(e);
+		} catch (IOException e) {
+			log.printStackTrace(e);
+		}}
+		catch(Exception e){
+			log.printStackTrace(e);
+		}
+		if(is_success){
+			is_success=false;
+		}
+	}
+	
+	private void processCreateDNS(String domainName){
+		Log log=Globals.log;  
+		try{
+		String create_dns_xml=OpenSRSXMLUtil.readXMLFile(filePath+"\\create_dns_zone.xml");
+		create_dns_xml=OpenSRSXMLUtil.replaceEx(create_dns_xml, "{$term$}", domainName);
+		String resp=OpenSRSXMLUtil.callOSRS(create_dns_xml);
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		try {
+			SAXParser parser = factory.newSAXParser();
+			InputSource is =new InputSource(new StringReader(resp));
+			is.setSystemId(filePath+"/opensrs");
+			parser.parse(is, new OpenSRSHandler());
+		} catch (ParserConfigurationException e) {
+			log.printStackTrace(e);
+		} catch (SAXException e) {
+			log.printStackTrace(e);
+		} catch (IOException e) {
+			log.printStackTrace(e);
+		}}
+		catch(Exception e){
+			log.printStackTrace(e);
+		}
+	}
+	
+	
 }
