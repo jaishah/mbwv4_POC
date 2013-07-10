@@ -551,7 +551,7 @@ public class OpenSRSXMLUtil {
 				Element item = (Element) items.item(j);
 				if (item != null)
 					pName = item.getAttribute("key");
-				if (pName != null && pName.equalsIgnoreCase("ipv6_address")) {
+				if (pName != null && pName.equalsIgnoreCase("hostname")) {
 					item.setTextContent(content);
 				}
 			}

@@ -243,9 +243,11 @@ return sbuff.toString();
 					SAXParser parser = factory.newSAXParser();
 					InputSource is =new InputSource(new StringReader(resp_contact));
 					is.setSystemId(filePath + "/opensrs");
+					if(!resp_contact.equalsIgnoreCase(""))
 					parser.parse(is, new OpenSRSHandler());
+					if(!resp_status.equalsIgnoreCase("")){
 					is.setCharacterStream(new StringReader(resp_status));
-					parser.parse(is, new OpenSRSHandler());
+					parser.parse(is, new OpenSRSHandler());}
 				} catch (ParserConfigurationException e) {
 					log.write(getLogLevel(), this.getClass().getName()+"ParserConfig error");
 				} catch (SAXException e) {
@@ -256,7 +258,7 @@ return sbuff.toString();
 			}
 					d.setStatus_sec(lock_state);
 					d.setWhois(whois);
-					lock_state="";whois="";
+					//lock_state="";whois="";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
