@@ -147,6 +147,9 @@ public class OpenSRSHandler extends DefaultHandler{
 		
 		if(confirm_response){
 			tmpValue = new String(ch, start, length);
+			if(tmpValue.endsWith("revoked successfully")){
+				RevokeDomain.cnf_success=true;
+			}
 			if(tmpValue.startsWith("Domain registration successfully"))
 			OpenSRSDomainSearchServlet.cnf_success=true;
 				if(tmpValue.contains("Lock enabled")){
