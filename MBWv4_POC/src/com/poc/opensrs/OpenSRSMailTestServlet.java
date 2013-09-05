@@ -31,21 +31,26 @@ public class OpenSRSMailTestServlet extends JSPServlet {
         
         children.element("user", "admin@bcsg.adm");
         children.element("password", "abc123!");                
-        credentials.element("credentials", children);    
-        //credentials.element("domain", "testbcsg.com");        
+        credentials.element("credentials", children);   
+        credentials.element("user", "jag@tester.co.uk");
+       // credentials.element("domain", "tester.co.uk");        
         JSONObject attributes = new JSONObject();
-        //attributes.element("workgroup", "development");        
-        //credentials.element("attributes", attributes);
-        credentials.element("user", "philb@pmbtesting1.com");        
-        credentials.element("reason", "testing SSO");        
-        credentials.element("type", "sso");        
-        credentials.element("duration", "1");        
-        
+        attributes.element("workgroup", "development");        
+        //credentials.element("user", "philb@pmbtesting1.com");        
+        //credentials.element("reason", "testing SSO");        
+        //credentials.element("type", "sso");        
+       // credentials.element("duration", "1");        
+       // JSONObject attributes = new JSONObject();
+        attributes.element("name", "jag");        
+        attributes.element("password", "test");      
+        attributes.element("timezone", "Europe/London");
+       
+        credentials.element("attributes", attributes);
         
         System.out.println(credentials.toString());
-
+        OpenSRSHttpClient sslclient = new OpenSRSHttpClient("admin.test.hostedemail.com/api/change_user",80,"admin@bcsg.adm","abc123!");
         //OpenSRSHttpClient sslclient = new OpenSRSHttpClient("admin.test.hostedemail.com/api/change_domain",80,"admin@bcsg.adm","abc123!");
-        OpenSRSHttpClient sslclient = new OpenSRSHttpClient("admin.test.hostedemail.com/api/generate_token",80,"admin@bcsg.adm","abc123!");
+        //OpenSRSHttpClient sslclient = new OpenSRSHttpClient("admin.test.hostedemail.com/api/generate_token",80,"admin@bcsg.adm","abc123!");
         try {
             String resp = sslclient.sendJSONRequest(credentials);
             JSONObject jResp = (JSONObject) JSONSerializer.toJSON( resp );
@@ -231,7 +236,7 @@ public class OpenSRSMailTestServlet extends JSPServlet {
         JSONObject children = new JSONObject();
         String[] domain = {"domain"};
         children.element("company", "Business Centric Services Group");
-        children.element("match", "*");
+        children.element("match", "jacks.com");
         children.element("type", domain);
     credentials.element("criteria", children);
         JSONObject range = new JSONObject();

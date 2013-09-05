@@ -22,6 +22,7 @@ import com.flowbuilder.utils.Globals;
 import com.flowbuilder.utils.Log;
 
 /**
+ * Servlet to revoke domains
  * Servlet implementation class RevokeDomain
  */
 @WebServlet("/RevokeDomain")
@@ -72,46 +73,53 @@ public class RevokeDomain extends HttpServlet {
 				out.print(result);
 			}
 	}
-	
-	private String processCancel(String name,String filePath){
-		 Configuration cfg=Globals.cfg;                
-	        Log log=Globals.log;
-		//String name = request.getParameter("name");
-       log.write(getLogLevel(), this.getClass().getName()+":processCancel()");
-       String xml="";
-       String status = "";
+/**
+ * Use this method to cancel domains
+ * @param name
+ * @param filePath
+ * @return
+ */
+	private String processCancel(String name, String filePath) {
+		Configuration cfg = Globals.cfg;
+		Log log = Globals.log;
+		// String name = request.getParameter("name");
+		log.write(getLogLevel(), this.getClass().getName() + ":processCancel()");
+		String xml = "";
+		String status = "";
 		try {
 			xml = OpenSRSXMLUtil.readXMLFile(filePath + "\\revoke.xml");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		xml=OpenSRSXMLUtil.replaceEx(xml, "{$term$}", name);
-      String resp = OpenSRSXMLUtil.callOSRS(xml);
-      SAXParserFactory factory = SAXParserFactory.newInstance();
+		xml = OpenSRSXMLUtil.replaceEx(xml, "{$term$}", name);
+		String resp = OpenSRSXMLUtil.callOSRS(xml);
+		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
 			SAXParser parser = factory.newSAXParser();
-			InputSource is =new InputSource(new StringReader(resp));
+			InputSource is = new InputSource(new StringReader(resp));
 			is.setSystemId(filePath + "/opensrs");
 			parser.parse(is, new OpenSRSHandler());
 		} catch (ParserConfigurationException e) {
-			log.write(getLogLevel(), this.getClass().getName()+"ParserConfig error");
+			log.write(getLogLevel(), this.getClass().getName()
+					+ "ParserConfig error");
 		} catch (SAXException e) {
-			log.write(getLogLevel(), this.getClass().getName()+"SAXException : xml not well formed");
+			log.write(getLogLevel(), this.getClass().getName()
+					+ "SAXException : xml not well formed");
 		} catch (IOException e) {
-			log.write(getLogLevel(), this.getClass().getName()+"IO error");
+			log.write(getLogLevel(), this.getClass().getName() + "IO error");
 		}
-	
+
 		StringBuffer sbuff = new StringBuffer();
-		if(cnf_success){
-			sbuff.append("Domain "+name+" revoked successfully.");
-		}else{
-			sbuff.append("Domain cannot be revoked.");	
+		if (cnf_success) {
+			sbuff.append("Domain " + name + " revoked successfully.");
+		} else {
+			sbuff.append("Domain cannot be revoked.");
 		}
-		
+
 		sbuff.append("<br><br><a href=\"menu.jsp\">Back</a>");
-		cnf_success=false;
-return sbuff.toString();
+		cnf_success = false;
+		return sbuff.toString();
 	}
 	protected int getLogLevel() {
 		  return new Integer(Globals.cfg.getProperty("debug.com.poc.opensrs.RevokeDomain")).intValue();
