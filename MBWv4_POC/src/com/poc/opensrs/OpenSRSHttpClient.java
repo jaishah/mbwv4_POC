@@ -181,8 +181,16 @@ public class OpenSRSHttpClient {
         //byte[] byts=EntityUtils.toByteArray(he);
 
         //is.read(byts);
-        
-        return EntityUtils.toString(he);                                
+        String resp =EntityUtils.toString(he); 
+        try{
+        EntityUtils.consume(he);
+        }catch(Exception e){
+        	Globals.log.write(Log.ERROR, "Error While consuming entity.");
+        }finally{
+        	postRequest.releaseConnection();
+        	client=null;
+        }
+        return resp;                                
                 
     }
     
